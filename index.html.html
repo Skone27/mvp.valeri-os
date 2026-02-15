@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)file:///C:/Users/BrianMurphy/Downloads/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valeri — CRE Underwriting Intelligence</title>
+<link href="./Valeri — CRE Underwriting Intelligence_files/css2" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #0E1318;
+  --bg-surface: #151C23;
+  --bg-elevated: #1C242D;
+  --bg-card: #232D38;
+  --bg-card-hover: #2B3643;
+  --text-primary: #E8ECF0;
+  --text-secondary: #A8B2BC;
+  --text-tertiary: #7A8694;
+  --text-ghost: #566270;
+  --accent: #C4B8A0;
+  --accent-bright: #D8CCAE;
+  --accent-dim: rgba(196,184,160,0.20);
+  --accent-ghost: rgba(196,184,160,0.08);
+  --silver: #94A3B8;
+  --silver-bright: #CBD5E1;
+  --silver-dim: rgba(148,163,184,0.25);
+  --border: rgba(148,163,184,0.12);
+  --border-hover: rgba(148,163,184,0.25);
+  --green: #4ADE80;
+  --green-dim: rgba(74,222,128,0.12);
+  --blue: #60A5FA;
+  --blue-dim: rgba(96,165,250,0.12);
+  --amber: #FBBF24;
+  --amber-dim: rgba(251,191,36,0.10);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans',-apple-system,sans-serif;
+  background:var(--bg-deep); color:var(--text-primary);
+  overflow-x:hidden; -webkit-font-smoothing:antialiased; line-height:1.6;
+}
+.container { max-width:1200px; margin:0 auto; padding:0 40px; }
+@media(max-width:768px){ .container{padding:0 20px;} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:.8} }
+@keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+/* NAV */
+.nav {
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(14,19,24,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:0 40px;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-tertiary);text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-cta{color:var(--bg-deep)!important;background:var(--accent);padding:8px 20px;border-radius:4px;transition:background .3s}
+.nav-cta:hover{background:var(--accent-bright)}
+@media(max-width:768px){.nav{padding:0 20px}.nav-links{display:none}}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 40px 80px;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 800px 500px at 30% 40%,rgba(91,157,175,0.06) 0%,transparent 70%),radial-gradient(ellipse 600px 600px at 70% 60%,rgba(196,184,160,0.04) 0%,transparent 70%)}
+.hero-content{position:relative;text-align:center;max-width:800px;animation:fadeUp .8s ease forwards}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1.1;color:var(--text-primary);margin-bottom:24px}
+.hero-title em{font-style:italic;color:var(--accent)}
+.hero-subtitle{font-size:16px;font-weight:300;color:var(--text-secondary);max-width:620px;margin:0 auto 48px;line-height:1.75}
+.hero-stats{display:flex;justify-content:center;gap:56px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-value{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--text-primary)}
+.hero-stat-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-tertiary);margin-top:4px}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp .8s ease forwards 1.2s}
+.hero-scroll span{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-ghost)}
+.hero-scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,var(--silver-dim),transparent);animation:pulse 2.5s ease-in-out infinite}
+
+/* SECTIONS */
+.section{padding:100px 0;border-top:1px solid var(--border)}
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,48px);font-weight:300;color:var(--text-primary);margin-bottom:16px}
+.section-desc{font-size:15px;font-weight:300;color:var(--text-secondary);max-width:640px;line-height:1.75}
+.section-center{text-align:center}
+.section-center .section-desc{margin:0 auto}
+
+/* ABOUT GRID */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:48px}
+.about-card{background:var(--bg-surface);padding:32px 28px;transition:background .3s}
+.about-card:hover{background:var(--bg-elevated)}
+.about-card-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px}
+.about-card-desc{font-size:13px;color:var(--text-secondary);line-height:1.7}
+.asset-bar{margin-top:32px;padding:24px 28px;border:1px solid var(--border);background:var(--bg-surface)}
+.asset-bar-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.asset-bar-desc{font-size:14px;color:var(--text-secondary);line-height:1.7}
+.asset-bar-desc span{color:var(--text-primary)}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+
+/* WORKFLOW GRID */
+.workflow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px}
+.wf-step{background:var(--bg-surface);padding:32px 28px;transition:background .3s;cursor:default}
+.wf-step:hover{background:var(--bg-elevated)}
+.wf-num{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-ghost);margin-bottom:16px}
+.wf-icon{width:32px;height:32px;stroke:var(--accent);stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-bottom:16px}
+.wf-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--text-primary);margin-bottom:10px}
+.wf-desc{font-size:13px;color:var(--text-secondary);line-height:1.65}
+.wf-tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:4px}
+.wf-tag{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.5px;padding:3px 8px;background:var(--accent-ghost);color:var(--accent);border-radius:2px}
+@media(max-width:900px){.workflow-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.workflow-grid{grid-template-columns:1fr}}
+
+/* CTA */
+.cta-section{padding:80px 0;border-top:1px solid var(--border)}
+.cta-box{border:1px dashed var(--border-hover);border-radius:8px;padding:64px 40px;text-align:center;background:var(--bg-surface);transition:border-color .3s,background .3s;cursor:pointer}
+.cta-box:hover{border-color:var(--accent-dim);background:var(--bg-elevated)}
+.cta-icon{width:48px;height:48px;stroke:var(--accent);stroke-width:1;fill:none;margin:0 auto 24px;display:block}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--text-primary);margin-bottom:12px}
+.cta-desc{font-size:15px;color:var(--text-secondary);max-width:500px;margin:0 auto 32px;line-height:1.7}
+.cta-button{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--bg-deep);background:var(--accent);padding:12px 32px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;transition:background .3s}
+.cta-button:hover{background:var(--accent-bright)}
+.cta-features{display:flex;justify-content:center;gap:40px;margin-top:32px;flex-wrap:wrap}
+.cta-feature{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-tertiary)}
+.cta-feature svg{width:14px;height:14px;stroke:var(--green);stroke-width:2;fill:none}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px}
+.tool-card{background:var(--bg-surface);padding:36px 32px;transition:background .3s;cursor:pointer;position:relative}
+.tool-card:hover{background:var(--bg-elevated)}
+.tool-badge{position:absolute;top:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:2px;background:var(--green-dim);color:var(--green)}
+.tool-icon{width:28px;height:28px;stroke:var(--accent);stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-bottom:20px}
+.tool-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--text-primary);margin-bottom:10px}
+.tool-desc{font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:16px}
+.tool-list{list-style:none}
+.tool-list li{font-size:12px;color:var(--text-tertiary);padding:4px 0;border-top:1px solid var(--border)}
+.tool-list li:first-child{border-top:none}
+@media(max-width:768px){.tools-grid{grid-template-columns:1fr}}
+
+/* DOC LIBRARY */
+.doc-library{margin-top:56px;background:#F8F9FB;border:1px solid #E2E5EA;overflow:hidden}
+.doc-tabs{display:flex;gap:0;border-bottom:1px solid #E2E5EA}
+.doc-tab{padding:14px 24px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#6B7280;cursor:pointer;border:none;border-bottom:2px solid transparent;background:transparent;transition:all .2s}
+.doc-tab:hover{color:#374151;background:#F0F2F5}
+.doc-tab.active{color:#1E3A5F;border-bottom-color:#1E3A5F;background:#FFF}
+.doc-body{display:none;padding:32px;background:#FFF}
+.doc-body.active{display:block}
+.doc-cat-title{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#1E3A5F;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #E8EBF0}
+.doc-list{list-style:none;margin-bottom:24px}
+.doc-list li{display:flex;align-items:center;gap:10px;padding:8px 12px;font-size:13px;color:#374151;border-radius:4px;transition:background .2s}
+.doc-list li:hover{background:#F0F4F8}
+.doc-list li svg{width:14px;height:14px;stroke:#1E3A5F;stroke-width:1.5;fill:none;flex-shrink:0}
+.doc-type{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:9px;color:#9CA3AF;letter-spacing:.5px}
+
+/* PIPELINE */
+.pipeline-track{display:flex;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px;overflow-x:auto}
+.pip-cell{flex:1;min-width:130px;background:var(--bg-surface);padding:24px 16px;text-align:center;position:relative;transition:background .3s}
+.pip-cell:hover{background:var(--bg-elevated)}
+.pip-seg{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-ghost);margin-bottom:10px}
+.pip-title{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:8px}
+.pip-mods{font-size:11px;color:var(--text-tertiary);line-height:1.5}
+.pip-bar{position:absolute;bottom:0;left:0;right:0;height:2px}
+
+/* CONSTELLATION */
+.const-wrap{position:relative;width:100%;max-width:1100px;margin:56px auto 0;min-height:600px;background:var(--bg-surface);border:1px solid var(--border);overflow:visible}
+.const-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.const-svg line{stroke:var(--border-hover);stroke-width:.5;transition:stroke .3s,opacity .3s}
+.const-svg line.hl{stroke:var(--accent-dim);stroke-width:1}
+.mod-node{position:absolute;transform:translate(-50%,-50%);cursor:pointer;z-index:10;text-align:center;transition:transform .3s}
+.mod-node:hover{transform:translate(-50%,-50%) scale(1.08);z-index:20}
+.mod-core{width:52px;height:52px;border:1px solid var(--border);background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;position:relative;transition:border-color .3s,background .3s}
+.mod-node:hover .mod-core{border-color:var(--accent-dim);background:var(--bg-card)}
+.mod-core svg{width:22px;height:22px;stroke:var(--silver);stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.mod-node:hover .mod-core svg{stroke:var(--accent)}
+.mod-badge{position:absolute;top:-6px;right:-6px;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:500;width:18px;height:18px;display:flex;align-items:center;justify-content:center;background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary)}
+.mod-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:var(--text-tertiary);margin-top:8px;white-space:nowrap}
+.mod-node:hover .mod-label{color:var(--text-secondary)}
+
+/* REGISTRY */
+.reg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px}
+.reg-card{background:var(--bg-surface);padding:28px 24px;transition:background .3s;cursor:pointer}
+.reg-card:hover{background:var(--bg-elevated)}
+.reg-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.reg-header svg{width:18px;height:18px;stroke:var(--silver);stroke-width:1.25;fill:none;flex-shrink:0;stroke-linecap:round;stroke-linejoin:round}
+.reg-name{font-size:13px;font-weight:500;color:var(--text-primary)}
+.reg-count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-ghost)}
+.reg-desc{font-size:12px;color:var(--text-tertiary);line-height:1.6;margin-bottom:14px}
+.reg-skills{display:flex;flex-wrap:wrap;gap:4px}
+.reg-skill{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.3px;padding:2px 7px;background:var(--accent-ghost);color:var(--text-tertiary);border-radius:2px}
+
+/* KNOWLEDGE */
+.know-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px}
+.know-cell{background:var(--bg-surface);padding:24px 20px;transition:background .3s}
+.know-cell:hover{background:var(--bg-elevated)}
+.know-bar{height:2px;width:40px;margin-bottom:16px}
+.know-count{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--text-primary);margin-bottom:4px}
+.know-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px}
+.know-items{font-size:12px;color:var(--text-tertiary);line-height:1.6}
+
+/* ROADMAP */
+.rm-item{display:flex;gap:32px;padding:32px 0;border-bottom:1px solid var(--border)}
+.rm-item:last-child{border-bottom:none}
+.rm-phase{flex-shrink:0;width:100px;text-align:right}
+.rm-phase-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+.rm-phase-date{font-size:12px;color:var(--text-ghost);margin-top:4px}
+.rm-dot{width:8px;height:8px;border-radius:50%;background:var(--accent-dim);border:1px solid var(--accent);flex-shrink:0;margin-top:4px}
+.rm-dot.live{background:var(--green);border-color:var(--green);box-shadow:0 0 8px rgba(74,222,128,0.3)}
+.rm-content{flex:1}
+.rm-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--text-primary);margin-bottom:6px}
+.rm-desc{font-size:13px;color:var(--text-secondary);line-height:1.6}
+.rm-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.rm-tag{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.5px;padding:3px 8px;border:1px solid var(--border);color:var(--text-tertiary);border-radius:2px}
+.rm-tag.live{border-color:var(--green);color:var(--green);background:var(--green-dim)}
+
+/* FOOTER */
+.footer{text-align:center;padding:64px 40px;border-top:1px solid var(--border)}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--accent);letter-spacing:6px;text-transform:uppercase;margin-bottom:8px}
+.footer-sub{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text-ghost)}
+
+/* DETAIL PANEL */
+.overlay{position:fixed;inset:0;background:rgba(14,19,24,0.65);backdrop-filter:blur(4px);z-index:500;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:auto}
+.detail-panel{position:fixed;top:0;right:-420px;bottom:0;width:400px;max-width:100vw;background:var(--bg-surface);border-left:1px solid var(--border);z-index:501;overflow-y:auto;transition:right .35s ease;padding:32px}
+.detail-panel.open{right:0}
+.detail-close{position:absolute;top:16px;right:16px;width:28px;height:28px;background:none;border:1px solid var(--border);color:var(--text-tertiary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:border-color .2s,color .2s}
+.detail-close:hover{border-color:var(--text-tertiary);color:var(--text-primary)}
+.detail-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--text-primary);margin:8px 0 8px}
+.detail-phase{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.detail-desc{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px}
+.detail-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-ghost);margin-bottom:12px}
+.detail-list{list-style:none;margin-bottom:24px}
+.detail-list li{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-secondary)}
+.detail-type{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.5px;padding:2px 6px;background:var(--accent-ghost);color:var(--text-tertiary)}
+
+/* DEMO MODAL */
+.demo-overlay{position:fixed;inset:0;z-index:600;background:var(--bg-deep);opacity:0;pointer-events:none;transition:opacity .4s;display:flex;flex-direction:column}
+.demo-overlay.open{opacity:1;pointer-events:auto}
+.demo-header{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);background:var(--bg-surface);flex-shrink:0}
+.demo-header-left{display:flex;align-items:center;gap:16px}
+.demo-brand{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+.demo-deal{font-size:13px;color:var(--text-secondary)}
+.demo-x{width:32px;height:32px;background:none;border:1px solid var(--border);color:var(--text-tertiary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s}
+.demo-x:hover{border-color:var(--text-tertiary);color:var(--text-primary)}
+.demo-body{display:flex;flex:1;overflow:hidden}
+.demo-pipe{width:280px;flex-shrink:0;border-right:1px solid var(--border);background:var(--bg-surface);overflow-y:auto;padding:20px 0}
+.demo-progress{padding:16px 20px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.demo-progress-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-ghost);margin-bottom:8px}
+.demo-progress-bar{height:2px;background:var(--border);border-radius:1px;overflow:hidden}
+.demo-progress-fill{height:100%;background:var(--green);border-radius:1px;transition:width .5s ease;width:0}
+.demo-step{display:flex;align-items:center;gap:12px;padding:10px 20px;font-size:12px;color:var(--text-ghost);transition:all .3s}
+.demo-step.active{color:var(--accent);background:var(--accent-ghost)}
+.demo-step.complete{color:var(--green)}
+.demo-step-icon{width:22px;height:22px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .3s}
+.demo-step.active .demo-step-icon{border-color:var(--accent);background:var(--accent-ghost)}
+.demo-step.complete .demo-step-icon{border-color:var(--green);background:var(--green-dim)}
+.demo-stream{flex:1;overflow-y:auto;padding:24px 32px}
+.demo-docs{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.demo-docs-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-ghost);margin-bottom:10px}
+.demo-doc-chips{display:flex;flex-wrap:wrap;gap:6px}
+.demo-doc-chip{font-size:11px;padding:4px 10px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);border-radius:3px;animation:fadeUp .3s ease-out}
+.demo-phase-header{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.demo-line{font-size:13px;line-height:1.7;padding:3px 0;animation:fadeUp .25s ease-out}
+.demo-line.positive{color:var(--green)}
+.demo-line.negative{color:#F87171}
+.demo-line.neutral{color:var(--text-secondary)}
+.demo-line.metric{font-family:'JetBrains Mono',monospace;font-size:12px}
+.demo-complete{text-align:center;padding:40px;border-top:1px solid var(--border);margin-top:24px;animation:fadeUp .5s ease-out}
+.demo-complete-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--green);margin-bottom:8px}
+.demo-complete-sub{font-size:13px;color:var(--text-tertiary);margin-bottom:20px}
+.demo-outputs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.demo-out{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.5px;padding:6px 14px;background:var(--green-dim);border:1px solid rgba(74,222,128,0.25);color:var(--green);border-radius:3px;cursor:pointer;transition:background .2s}
+.demo-out:hover{background:rgba(74,222,128,0.2)}
+@media(max-width:768px){.demo-pipe{width:200px}.demo-stream{padding:16px}.demo-header{padding:12px 16px}}
+@media(max-width:520px){.demo-pipe{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Valeri</div>
+  <div class="nav-links">
+    <a href="file:///C:/Users/BrianMurphy/Downloads/index.html#about">Platform</a>
+    <a href="file:///C:/Users/BrianMurphy/Downloads/index.html#workflow">Workflow</a>
+    <a href="file:///C:/Users/BrianMurphy/Downloads/index.html#tools">Live Tools</a>
+    <a href="file:///C:/Users/BrianMurphy/Downloads/index.html#architecture">Architecture</a>
+    <a href="file:///C:/Users/BrianMurphy/Downloads/index.html#knowledge">Knowledge</a>
+    <a href="file:///C:/Users/BrianMurphy/Downloads/index.html#outputs">Outputs</a>
+    <a href="file:///C:/Users/BrianMurphy/Downloads/index.html#roadmap">Roadmap</a>
+    <a class="nav-cta" href="file:///C:/Users/BrianMurphy/Downloads/index.html#start">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">CRE Intelligence Platform</div>
+    <h1 class="hero-title">Underwriting <em>Intelligence</em><br>at Machine Speed</h1>
+    <p class="hero-subtitle">
+      Valeri is an AI-native operating system for commercial real estate credit.
+      It reads your deal documents, underwrites every line, and delivers the full
+      analytical package — proforma, sizing model, and IC memo — in minutes.
+      Purpose-built for multifamily and mixed-use lending, with additional
+      commercial property types coming soon.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-value">20+</div><div class="hero-stat-label">Modules</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">170+</div><div class="hero-stat-label">Skills</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">70+</div><div class="hero-stat-label">Enterprise Nodes</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">5,900+</div><div class="hero-stat-label">Knowledge Docs</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Explore</span><div class="hero-scroll-line"></div></div>
+</section>
+
+<!-- WHAT IS VALERI -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-eyebrow">The Platform</div>
+    <div class="section-title">What Is Valeri</div>
+    <div class="section-desc" style="max-width:720px">
+      Valeri is a full-stack underwriting operating system that transforms raw deal
+      documents into complete, audit-ready credit analysis. Built on 25 years of
+      commercial real estate lending experience, it combines deterministic financial
+      calculations with AI-powered document intelligence to produce the same deliverables
+      a senior analyst team would — at a fraction of the time and cost.
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-title">For Lenders</div>
+        <div class="about-card-desc">Elevate your screening and analysis workflow. Process more deals with fewer resources, maintain consistent credit standards across your team, and generate complete deal packages ready for investment committee review.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">For Sponsors</div>
+        <div class="about-card-desc">Submit your deal documents and get back a full underwriting package — proforma, sizing, term sheet, and negotiation points. Understand exactly how lenders will view your deal before you walk into the room.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">For Advisors</div>
+        <div class="about-card-desc">Handle larger pipelines without scaling headcount. Run preliminary analysis on every deal that crosses your desk, identify the strongest opportunities faster, and deliver more value to your clients.</div>
+      </div>
+    </div>
+    <div class="asset-bar">
+      <div class="asset-bar-label">Asset Coverage</div>
+      <div class="asset-bar-desc">
+        Currently optimized for <span>multifamily</span> and
+        <span>mixed-use</span> lending — covering bridge, value-add, and stabilized
+        across the $10M–$100M+ deal size spectrum. Additional commercial property types on the roadmap.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="section" id="workflow">
+  <div class="container">
+    <div class="section-eyebrow">How It Works</div>
+    <div class="section-title">Eight Steps to a Full Deal Package</div>
+    <div class="section-desc">Upload your deal folder. Valeri reads every document, builds its own assumptions from the source data, sizes the loan against a five-constraint waterfall, and assembles the complete output package — all in a single automated run.</div>
+    <div class="workflow-grid">
+      <div class="wf-step">
+        <div class="wf-num">01</div>
+        <svg class="wf-icon" viewBox="0 0 32 32"><path d="M20 4H8a2 2 0 00-2 2v20a2 2 0 002 2h16a2 2 0 002-2V10l-6-6z"></path><path d="M20 4v6h6"></path><path d="M12 18h8M12 22h5"></path></svg>
+        <div class="wf-title">Document Intake</div>
+        <div class="wf-desc">Upload your deal folder. Valeri scans every file — rent rolls, T-12s, appraisals, sponsor packages — classifies each document, extracts key parameters, and flags what's missing.</div>
+        <div class="wf-tags"><span class="wf-tag">Doc Inventory</span><span class="wf-tag">Needs List</span></div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">02</div>
+        <svg class="wf-icon" viewBox="0 0 32 32"><circle cx="16" cy="10" r="5"></circle><path d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10"></path></svg>
+        <div class="wf-title">Sponsor Diligence</div>
+        <div class="wf-desc">Automated deep research — track record verification, portfolio analysis, litigation search, financial strength assessment, and comprehensive scorecard generation.</div>
+        <div class="wf-tags"><span class="wf-tag">Sponsor Report</span><span class="wf-tag">Risk Score</span></div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">03</div>
+        <svg class="wf-icon" viewBox="0 0 32 32"><path d="M4 24l7-7 5 5 5-9 7 7"></path><path d="M24 14h4v4"></path></svg>
+        <div class="wf-title">Market Analysis</div>
+        <div class="wf-desc">MSA economics, submarket deep dive, rent comps, sales comps, supply pipeline assessment, and demographic trend analysis for the subject property's trade area.</div>
+        <div class="wf-tags"><span class="wf-tag">Market Report</span><span class="wf-tag">Comp Analysis</span></div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">04</div>
+        <svg class="wf-icon" viewBox="0 0 32 32"><rect x="4" y="8" width="24" height="18" rx="1"></rect><path d="M4 14h24"></path><path d="M12 14v12M20 14v12"></path><path d="M4 20h24"></path></svg>
+        <div class="wf-title">Core Underwriting</div>
+        <div class="wf-desc">Rent roll analysis, T-12 operating statement normalization, income and expense underwriting with independently derived assumptions. Every number is sourced from actual deal documents and validated against market data.</div>
+        <div class="wf-tags"><span class="wf-tag">UW Rent Roll</span><span class="wf-tag">UW T-12</span></div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">05</div>
+        <svg class="wf-icon" viewBox="0 0 32 32"><path d="M6 26V10l6-6h14a2 2 0 012 2v20a2 2 0 01-2 2H8a2 2 0 01-2-2z"></path><path d="M12 4v6H6"></path><path d="M12 16h8M12 20h8M12 24h4"></path></svg>
+        <div class="wf-title">Financial Modeling</div>
+        <div class="wf-desc">Pro forma income construction, dual-scenario cash flow projections (conservative and business plan), and multi-approach valuation using income capitalization, sales comparison, and cost methodologies.</div>
+        <div class="wf-tags"><span class="wf-tag">Pro Forma</span><span class="wf-tag">Valuation</span></div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">06</div>
+        <svg class="wf-icon" viewBox="0 0 32 32"><path d="M16 4v24M4 16h24"></path><path d="M8 8l16 16M24 8L8 24"></path><circle cx="16" cy="16" r="3"></circle></svg>
+        <div class="wf-title">Loan Sizing</div>
+        <div class="wf-desc">Five-constraint waterfall engine — LTC, LTV As-Is, LTV Stabilized, DSCR, and Debt Yield — identifies the binding constraint and calculates maximum supportable loan proceeds with full transparency on what's driving the number.</div>
+        <div class="wf-tags"><span class="wf-tag">Sizing Output</span><span class="wf-tag">Term Sheet</span></div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">07</div>
+        <svg class="wf-icon" viewBox="0 0 32 32"><path d="M16 4l12 20H4z"></path><path d="M16 14v4"></path><circle cx="16" cy="21" r="1"></circle></svg>
+        <div class="wf-title">Risk Assessment</div>
+        <div class="wf-desc">Credit policy enforcement, sensitivity analysis across rate, vacancy, and expense scenarios, and comprehensive stress testing. Surfaces exactly where a deal is strong and where it's vulnerable.</div>
+        <div class="wf-tags"><span class="wf-tag">Risk Matrix</span><span class="wf-tag">Sensitivity</span></div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">08</div>
+        <svg class="wf-icon" viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="2"></rect><path d="M10 12h12M10 16h12M10 20h8"></path><path d="M22 20l2 2 4-4"></path></svg>
+        <div class="wf-title">Document Assembly</div>
+        <div class="wf-desc">Complete IC memo generation, deal book compilation, Excel sizing model, and all supporting schedules and exhibits. Every output traces back to its source data with full calculation transparency.</div>
+        <div class="wf-tags"><span class="wf-tag">IC Memo</span><span class="wf-tag">Deal Book</span><span class="wf-tag">Excel Model</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="start">
+  <div class="container">
+    <div class="cta-box" id="ctaBox">
+      <svg class="cta-icon" viewBox="0 0 48 48"><rect x="8" y="6" width="32" height="36" rx="2" stroke-width="1.5"></rect><path d="M24 20v12M18 26l6-6 6 6" stroke-width="1.5"></path><path d="M16 14h16" stroke-width="1" opacity="0.3"></path></svg>
+      <div class="cta-title">Drop Your Deal Folder</div>
+      <div class="cta-desc">Upload rent rolls, T-12s, appraisals, offering memos, sponsor packages, and any supporting documents. Valeri classifies everything, flags what's missing, and runs the full underwriting workflow automatically.</div>
+      <button class="cta-button" id="ctaBtn">Start Underwriting</button>
+      <div class="cta-features">
+        <div class="cta-feature"><svg viewBox="0 0 14 14"><path d="M2 7l3.5 3.5L12 4"></path></svg><span>Any file format</span></div>
+        <div class="cta-feature"><svg viewBox="0 0 14 14"><path d="M2 7l3.5 3.5L12 4"></path></svg><span>Automatic classification</span></div>
+        <div class="cta-feature"><svg viewBox="0 0 14 14"><path d="M2 7l3.5 3.5L12 4"></path></svg><span>Missing doc detection</span></div>
+        <div class="cta-feature"><svg viewBox="0 0 14 14"><path d="M2 7l3.5 3.5L12 4"></path></svg><span>Full audit trail</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE TOOLS -->
+<section class="section" id="tools">
+  <div class="container">
+    <div class="section-eyebrow">Available Now</div>
+    <div class="section-title">Standalone Analysis Tools</div>
+    <div class="section-desc">Don't need a full deal run? Use individual analytical nodes on their own. Upload a single document — a rent roll, a term sheet, a sponsor package — and get back focused, detailed analysis in seconds.</div>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-badge">Live</div>
+        <svg class="tool-icon" viewBox="0 0 28 28"><rect x="2" y="2" width="10" height="12" rx="1"></rect><rect x="16" y="2" width="10" height="12" rx="1"></rect><path d="M7 18v8M21 18v8M4 22h6M18 22h6"></path></svg>
+        <div class="tool-title">Term Sheet Comparison</div>
+        <div class="tool-desc">Upload two or more term sheets. Valeri extracts every material term, aligns them side-by-side, flags discrepancies, and identifies the most favorable structure.</div>
+        <ul class="tool-list"><li>Rate, spread, and fee comparison</li><li>Prepayment penalty analysis</li><li>Covenant and reserve requirements</li><li>Recourse and carve-out mapping</li></ul>
+      </div>
+      <div class="tool-card">
+        <div class="tool-badge">Live</div>
+        <svg class="tool-icon" viewBox="0 0 28 28"><rect x="2" y="4" width="24" height="20" rx="1"></rect><path d="M2 10h24M9 10v14M17 10v14"></path><path d="M2 16h24"></path></svg>
+        <div class="tool-title">Rent Roll Analysis</div>
+        <div class="tool-desc">Upload a rent roll in any format. Valeri normalizes unit mix, identifies concessions, calculates loss-to-lease, and derives market rent assumptions independently.</div>
+        <ul class="tool-list"><li>Unit mix normalization</li><li>Concession &amp; vacancy analysis</li><li>Loss-to-lease calculation</li><li>Market rent derivation</li></ul>
+      </div>
+      <div class="tool-card">
+        <div class="tool-badge">Live</div>
+        <svg class="tool-icon" viewBox="0 0 28 28"><circle cx="14" cy="12" r="6"></circle><path d="M6 26c0-4.4 3.6-8 8-8s8 3.6 8 8"></path><path d="M20 6l4-2M22 12h4"></path></svg>
+        <div class="tool-title">Sponsor Return Analysis</div>
+        <div class="tool-desc">Upload a sponsor's business plan or proforma. Valeri stress-tests their assumptions, models return scenarios, and identifies where the plan is most vulnerable.</div>
+        <ul class="tool-list"><li>IRR &amp; equity multiple modeling</li><li>Exit cap rate sensitivity</li><li>Business plan stress testing</li><li>Assumption gap identification</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENT OUTPUT LIBRARY -->
+<section class="section" id="outputs">
+  <div class="container">
+    <div class="section-eyebrow">Deal Output Package</div>
+    <div class="section-title">What You Get</div>
+    <div class="section-desc">Every deal run produces a complete analytical package — the same deliverables a full credit team would produce, formatted to presentation standards and ready for review, negotiation, or committee submission.</div>
+    <div class="doc-library">
+      <div class="doc-tabs">
+        <button class="doc-tab active" data-tab="core">Core Outputs</button>
+        <button class="doc-tab" data-tab="analysis">Analysis Reports</button>
+        <button class="doc-tab" data-tab="models">Models &amp; Schedules</button>
+        <button class="doc-tab" data-tab="diligence">Due Diligence</button>
+      </div>
+      <div class="doc-body active" id="tab-core">
+        <div class="doc-cat-title">Primary Deliverables</div>
+        <ul class="doc-list">
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="1" width="10" height="12" rx="1"></rect><path d="M5 5h4M5 7h4M5 9h2"></path></svg>Investment Committee Memo<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="1" width="10" height="12" rx="1"></rect><path d="M5 4h4M5 6h4M5 8h4M5 10h2"></path></svg>Deal Book<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx=".5"></rect><path d="M2 5h10M5 5v7M8 5v7"></path></svg>Excel Sizing Model<span class="doc-type">XLSX</span></li>
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="1" width="10" height="12" rx="1"></rect><path d="M5 5h4M5 7h4"></path></svg>Term Sheet<span class="doc-type">DOCX</span></li>
+        </ul>
+      </div>
+      <div class="doc-body" id="tab-analysis">
+        <div class="doc-cat-title">Market &amp; Property Analysis</div>
+        <ul class="doc-list">
+          <li><svg viewBox="0 0 14 14"><path d="M2 11l3-4 3 2 4-6"></path></svg>MSA Economic Analysis<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><path d="M2 11l3-4 3 2 4-6"></path></svg>Submarket Deep Dive<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"></circle><path d="M4 7h6M7 4v6"></path></svg>Comparable Sales Analysis<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx=".5"></rect><path d="M2 5h10M5 5v7"></path></svg>Rent Roll Analysis<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="1" width="10" height="12" rx="1"></rect><path d="M5 5h4M5 7h4M5 9h2"></path></svg>Property History Report<span class="doc-type">DOCX</span></li>
+        </ul>
+        <div class="doc-cat-title">Financial Analysis</div>
+        <ul class="doc-list">
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx=".5"></rect><path d="M2 5h10M2 8h10"></path></svg>T-12 Operating Statement Analysis<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><path d="M2 11l3-4 3 2 4-6"></path><circle cx="11" cy="3" r="1.5"></circle></svg>Income &amp; Expense Underwriting<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><path d="M7 2v10M4 5l3-3 3 3"></path><path d="M2 12h10"></path></svg>Sponsor Return Analysis<span class="doc-type">DOCX</span></li>
+        </ul>
+      </div>
+      <div class="doc-body" id="tab-models">
+        <div class="doc-cat-title">Financial Models</div>
+        <ul class="doc-list">
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx=".5"></rect><path d="M2 5h10M5 5v7M8 5v7"></path></svg>Full Sizing Model (5-Constraint Waterfall)<span class="doc-type">XLSX</span></li>
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx=".5"></rect><path d="M2 5h10M5 5v7"></path></svg>Pro Forma Cash Flow Model<span class="doc-type">XLSX</span></li>
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx=".5"></rect><path d="M2 5h10M2 8h10"></path></svg>Sensitivity Analysis Tables<span class="doc-type">XLSX</span></li>
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx=".5"></rect><path d="M2 5h10"></path></svg>Valuation Summary<span class="doc-type">XLSX</span></li>
+        </ul>
+      </div>
+      <div class="doc-body" id="tab-diligence">
+        <div class="doc-cat-title">Sponsor &amp; Risk</div>
+        <ul class="doc-list">
+          <li><svg viewBox="0 0 14 14"><circle cx="7" cy="5" r="3"></circle><path d="M3 13c0-2.2 1.8-4 4-4s4 1.8 4 4"></path></svg>Sponsor Due Diligence Report<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><path d="M7 2l5 3v4c0 3-2.5 5-5 6-2.5-1-5-3-5-6V5z"></path></svg>Risk Assessment Matrix<span class="doc-type">DOCX</span></li>
+          <li><svg viewBox="0 0 14 14"><rect x="2" y="1" width="10" height="12" rx="1"></rect><path d="M5 4h4M5 6.5h4M5 9h4"></path></svg>Document Checklist &amp; Needs List<span class="doc-type">DOCX</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSTELLATION -->
+<section class="section" id="architecture">
+  <div class="container section-center">
+    <div class="section-eyebrow">System Architecture</div>
+    <div class="section-title">The Constellation</div>
+    <div class="section-desc">Valeri is built as a network of specialized analytical modules — each responsible for a distinct domain of credit analysis. Click any module to explore its skill inventory and see how data flows through the system.</div>
+  </div>
+  <div class="container">
+    <div class="const-wrap" id="constellation"><svg class="const-svg" id="cSvg"><line x1="52%" y1="18%" x2="42%" y2="42%" data-f="market" data-t="uw"></line><line x1="52%" y1="18%" x2="62%" y2="35%" data-f="market" data-t="val"></line><line x1="52%" y1="18%" x2="52%" y2="52%" data-f="market" data-t="sizer"></line><line x1="42%" y1="42%" x2="52%" y2="18%" data-f="uw" data-t="market"></line><line x1="42%" y1="42%" x2="62%" y2="35%" data-f="uw" data-t="val"></line><line x1="42%" y1="42%" x2="52%" y2="52%" data-f="uw" data-t="sizer"></line><line x1="42%" y1="42%" x2="80%" y2="32%" data-f="uw" data-t="calc"></line><line x1="42%" y1="42%" x2="24%" y2="30%" data-f="uw" data-t="intake"></line><line x1="42%" y1="42%" x2="52%" y2="36%" data-f="uw" data-t="credit"></line><line x1="62%" y1="35%" x2="42%" y2="42%" data-f="val" data-t="uw"></line><line x1="62%" y1="35%" x2="52%" y2="18%" data-f="val" data-t="market"></line><line x1="62%" y1="35%" x2="52%" y2="52%" data-f="val" data-t="sizer"></line><line x1="62%" y1="35%" x2="80%" y2="32%" data-f="val" data-t="calc"></line><line x1="52%" y1="52%" x2="42%" y2="42%" data-f="sizer" data-t="uw"></line><line x1="52%" y1="52%" x2="62%" y2="35%" data-f="sizer" data-t="val"></line><line x1="52%" y1="52%" x2="72%" y2="48%" data-f="sizer" data-t="risk"></line><line x1="52%" y1="52%" x2="40%" y2="60%" data-f="sizer" data-t="struct"></line><line x1="52%" y1="52%" x2="80%" y2="32%" data-f="sizer" data-t="calc"></line><line x1="35%" y1="18%" x2="24%" y2="30%" data-f="sponsor" data-t="intake"></line><line x1="35%" y1="18%" x2="42%" y2="42%" data-f="sponsor" data-t="uw"></line><line x1="35%" y1="18%" x2="72%" y2="48%" data-f="sponsor" data-t="risk"></line><line x1="35%" y1="18%" x2="22%" y2="46%" data-f="sponsor" data-t="crm"></line><line x1="24%" y1="30%" x2="35%" y2="18%" data-f="intake" data-t="sponsor"></line><line x1="24%" y1="30%" x2="42%" y2="42%" data-f="intake" data-t="uw"></line><line x1="24%" y1="30%" x2="22%" y2="46%" data-f="intake" data-t="crm"></line><line x1="52%" y1="36%" x2="42%" y2="42%" data-f="credit" data-t="uw"></line><line x1="52%" y1="36%" x2="52%" y2="52%" data-f="credit" data-t="sizer"></line><line x1="52%" y1="36%" x2="72%" y2="48%" data-f="credit" data-t="risk"></line><line x1="72%" y1="48%" x2="52%" y2="52%" data-f="risk" data-t="sizer"></line><line x1="72%" y1="48%" x2="52%" y2="36%" data-f="risk" data-t="credit"></line><line x1="72%" y1="48%" x2="58%" y2="66%" data-f="risk" data-t="docgen"></line><line x1="80%" y1="32%" x2="42%" y2="42%" data-f="calc" data-t="uw"></line><line x1="80%" y1="32%" x2="62%" y2="35%" data-f="calc" data-t="val"></line><line x1="80%" y1="32%" x2="52%" y2="52%" data-f="calc" data-t="sizer"></line><line x1="80%" y1="32%" x2="82%" y2="18%" data-f="calc" data-t="portfolio"></line><line x1="40%" y1="60%" x2="52%" y2="52%" data-f="struct" data-t="sizer"></line><line x1="40%" y1="60%" x2="58%" y2="66%" data-f="struct" data-t="docgen"></line><line x1="40%" y1="60%" x2="28%" y2="56%" data-f="struct" data-t="policy"></line><line x1="58%" y1="66%" x2="72%" y2="48%" data-f="docgen" data-t="risk"></line><line x1="58%" y1="66%" x2="40%" y2="60%" data-f="docgen" data-t="struct"></line><line x1="58%" y1="66%" x2="46%" y2="72%" data-f="docgen" data-t="dealbook"></line><line x1="58%" y1="66%" x2="72%" y2="70%" data-f="docgen" data-t="design"></line><line x1="22%" y1="46%" x2="24%" y2="30%" data-f="crm" data-t="intake"></line><line x1="22%" y1="46%" x2="35%" y2="18%" data-f="crm" data-t="sponsor"></line><line x1="28%" y1="56%" x2="52%" y2="36%" data-f="policy" data-t="credit"></line><line x1="28%" y1="56%" x2="40%" y2="60%" data-f="policy" data-t="struct"></line><line x1="28%" y1="70%" x2="42%" y2="42%" data-f="corpus" data-t="uw"></line><line x1="28%" y1="70%" x2="52%" y2="18%" data-f="corpus" data-t="market"></line><line x1="46%" y1="72%" x2="58%" y2="66%" data-f="dealbook" data-t="docgen"></line><line x1="82%" y1="18%" x2="80%" y2="32%" data-f="portfolio" data-t="calc"></line><line x1="82%" y1="18%" x2="52%" y2="18%" data-f="portfolio" data-t="market"></line><line x1="72%" y1="70%" x2="58%" y2="66%" data-f="design" data-t="docgen"></line><line x1="82%" y1="55%" x2="72%" y2="48%" data-f="orch" data-t="risk"></line><line x1="82%" y1="55%" x2="80%" y2="32%" data-f="orch" data-t="calc"></line></svg><div class="mod-node" data-id="market" style="left: 52%; top: 18%;"><div class="mod-core"><svg viewBox="0 0 32 32"><path d="M4 24l7-7 5 5 5-9 7 7"></path><path d="M24 14h4v4"></path></svg><div class="mod-badge">10</div></div><div class="mod-label">Market Analysis</div></div><div class="mod-node" data-id="uw" style="left: 42%; top: 42%;"><div class="mod-core"><svg viewBox="0 0 32 32"><rect x="4" y="8" width="24" height="18" rx="1"></rect><path d="M4 14h24M12 14v12M20 14v12M4 20h24"></path></svg><div class="mod-badge">12</div></div><div class="mod-label">Core Underwriting</div></div><div class="mod-node" data-id="val" style="left: 62%; top: 35%;"><div class="mod-core"><svg viewBox="0 0 32 32"><rect x="6" y="4" width="8" height="24" rx="1"></rect><rect x="18" y="12" width="8" height="16" rx="1"></rect><path d="M10 10v12M22 18v4"></path></svg><div class="mod-badge">8</div></div><div class="mod-label">Valuation</div></div><div class="mod-node" data-id="sizer" style="left: 52%; top: 52%;"><div class="mod-core"><svg viewBox="0 0 32 32"><path d="M16 4v24M4 16h24"></path><path d="M8 8l16 16M24 8L8 24"></path><circle cx="16" cy="16" r="3"></circle></svg><div class="mod-badge">10</div></div><div class="mod-label">Loan Sizer</div></div><div class="mod-node" data-id="sponsor" style="left: 35%; top: 18%;"><div class="mod-core"><svg viewBox="0 0 32 32"><circle cx="16" cy="10" r="5"></circle><path d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10"></path></svg><div class="mod-badge">9</div></div><div class="mod-label">Sponsor DD</div></div><div class="mod-node" data-id="intake" style="left: 24%; top: 30%;"><div class="mod-core"><svg viewBox="0 0 32 32"><path d="M20 4H8a2 2 0 00-2 2v20a2 2 0 002 2h16a2 2 0 002-2V10l-6-6z"></path><path d="M20 4v6h6"></path><path d="M12 18h8M12 22h5"></path></svg><div class="mod-badge">8</div></div><div class="mod-label">Document Intake</div></div><div class="mod-node" data-id="credit" style="left: 52%; top: 36%;"><div class="mod-core"><svg viewBox="0 0 32 32"><path d="M16 4l3 6h7l-5.5 4 2 7L16 17l-6.5 4 2-7L6 10h7z"></path></svg><div class="mod-badge">4</div></div><div class="mod-label">Credit Soul</div></div><div class="mod-node" data-id="risk" style="left: 72%; top: 48%;"><div class="mod-core"><svg viewBox="0 0 32 32"><path d="M16 4l12 20H4z"></path><path d="M16 14v4"></path><circle cx="16" cy="21" r="1"></circle></svg><div class="mod-badge">10</div></div><div class="mod-label">Risk Assessment</div></div><div class="mod-node" data-id="calc" style="left: 80%; top: 32%;"><div class="mod-core"><svg viewBox="0 0 32 32"><rect x="6" y="4" width="20" height="24" rx="2"></rect><path d="M10 10h12"></path><circle cx="12" cy="16" r="1.5"></circle><circle cx="20" cy="16" r="1.5"></circle><circle cx="12" cy="22" r="1.5"></circle><circle cx="20" cy="22" r="1.5"></circle></svg><div class="mod-badge">18</div></div><div class="mod-label">Calc Engine</div></div><div class="mod-node" data-id="struct" style="left: 40%; top: 60%;"><div class="mod-core"><svg viewBox="0 0 32 32"><rect x="6" y="6" width="20" height="20" rx="1"></rect><path d="M6 14h20M16 6v20"></path></svg><div class="mod-badge">9</div></div><div class="mod-label">Deal Structure</div></div><div class="mod-node" data-id="docgen" style="left: 58%; top: 66%;"><div class="mod-core"><svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="2"></rect><path d="M10 12h12M10 16h12M10 20h8"></path></svg><div class="mod-badge">8</div></div><div class="mod-label">Document Gen</div></div><div class="mod-node" data-id="crm" style="left: 22%; top: 46%;"><div class="mod-core"><svg viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="20" rx="2"></rect><path d="M4 6l12 10 12-10"></path></svg><div class="mod-badge">5</div></div><div class="mod-label">CRM &amp; Pipeline</div></div><div class="mod-node" data-id="policy" style="left: 28%; top: 56%;"><div class="mod-core"><svg viewBox="0 0 32 32"><path d="M16 4c-4 0-8 2-8 2v12s4 6 8 10c4-4 8-10 8-10V6s-4-2-8-2z"></path></svg><div class="mod-badge">5</div></div><div class="mod-label">Credit Policy</div></div><div class="mod-node" data-id="corpus" style="left: 28%; top: 70%;"><div class="mod-core"><svg viewBox="0 0 32 32"><path d="M4 6h8v20H4zM12 6h8v20h-8zM20 6h8v20h-8"></path></svg><div class="mod-badge">5</div></div><div class="mod-label">Knowledge Corpus</div></div><div class="mod-node" data-id="dealbook" style="left: 46%; top: 72%;"><div class="mod-core"><svg viewBox="0 0 32 32"><rect x="6" y="4" width="20" height="24" rx="2"></rect><path d="M6 4h4v24H6"></path><path d="M14 12h8M14 16h6"></path></svg><div class="mod-badge">4</div></div><div class="mod-label">Deal Book</div></div><div class="mod-node" data-id="portfolio" style="left: 82%; top: 18%;"><div class="mod-core"><svg viewBox="0 0 32 32"><path d="M4 8l6-4 6 4 6-4 6 4v16l-6 4-6-4-6 4-6-4z"></path></svg><div class="mod-badge">5</div></div><div class="mod-label">Portfolio Analytics</div></div><div class="mod-node" data-id="design" style="left: 72%; top: 70%;"><div class="mod-core"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10"></circle><path d="M16 6v4M16 22v4M6 16h4M22 16h4"></path></svg><div class="mod-badge">5</div></div><div class="mod-label">Design System</div></div><div class="mod-node" data-id="orch" style="left: 82%; top: 55%;"><div class="mod-core"><svg viewBox="0 0 32 32"><circle cx="16" cy="8" r="3"></circle><circle cx="8" cy="22" r="3"></circle><circle cx="24" cy="22" r="3"></circle><path d="M16 11v4M13 18l-3 2M19 18l3 2"></path></svg><div class="mod-badge">6</div></div><div class="mod-label">Orchestrator</div></div></div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="section" id="pipeline">
+  <div class="container">
+    <div class="section-eyebrow">Execution Sequence</div>
+    <div class="section-title">Pipeline Flow</div>
+    <div class="section-desc">Deterministic execution across four staged context windows — each segment clears and passes forward only what the next needs.</div>
+    <div class="pipeline-track" id="pipTrack"><div class="pip-cell"><div class="pip-seg">SEG 1A</div><div class="pip-title">Intake &amp; Scan</div><div class="pip-mods">Document Intake</div><div class="pip-bar" style="background:#5B9DAF"></div></div><div class="pip-cell"><div class="pip-seg">SEG 1B</div><div class="pip-title">Sponsor DD</div><div class="pip-mods">Sponsor DD<br>CRM &amp; Pipeline</div><div class="pip-bar" style="background:#5B9DAF"></div></div><div class="pip-cell"><div class="pip-seg">SEG 1C</div><div class="pip-title">Market Analysis</div><div class="pip-mods">Market Analysis</div><div class="pip-bar" style="background:#5B9DAF"></div></div><div class="pip-cell"><div class="pip-seg">SEG 2</div><div class="pip-title">Core Underwriting</div><div class="pip-mods">Core Underwriting<br>Valuation</div><div class="pip-bar" style="background:#7BAF8B"></div></div><div class="pip-cell"><div class="pip-seg">SEG 2B</div><div class="pip-title">Financial Modeling</div><div class="pip-mods">Calc Engine<br>Portfolio Analytics</div><div class="pip-bar" style="background:#7BAF8B"></div></div><div class="pip-cell"><div class="pip-seg">SEG 3</div><div class="pip-title">Sizing &amp; Structure</div><div class="pip-mods">Loan Sizer<br>Deal Structure<br>Credit Policy</div><div class="pip-bar" style="background:#AF9B6B"></div></div><div class="pip-cell"><div class="pip-seg">SEG 3B</div><div class="pip-title">Risk &amp; Stress</div><div class="pip-mods">Risk Assessment</div><div class="pip-bar" style="background:#AF9B6B"></div></div><div class="pip-cell"><div class="pip-seg">SEG 4</div><div class="pip-title">Document Assembly</div><div class="pip-mods">Document Gen<br>Deal Book<br>Design System</div><div class="pip-bar" style="background:#6BAF7B"></div></div></div>
+  </div>
+</section>
+
+<!-- REGISTRY -->
+<section class="section" id="registry">
+  <div class="container section-center">
+    <div class="section-eyebrow">Full Inventory</div>
+    <div class="section-title">Module Registry</div>
+    <div class="section-desc">Complete catalog of analytical modules and their constituent skills.</div>
+  </div>
+  <div class="container"><div class="reg-grid" id="regGrid"><div class="reg-card" data-mod="0"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><path d="M4 24l7-7 5 5 5-9 7 7"></path><path d="M24 14h4v4"></path></svg><div class="reg-name">Market Analysis</div><div class="reg-count">10</div></div><div class="reg-desc">Comprehensive submarket and MSA-level analysis. Population dynamics, employment, supply pipeline, and rent trend assessment.</div><div class="reg-skills"><span class="reg-skill">MSA Economic Analysis</span><span class="reg-skill">Submarket Deep Dive</span><span class="reg-skill">Supply Pipeline Assessment</span><span class="reg-skill">+7</span></div></div><div class="reg-card" data-mod="1"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><rect x="4" y="8" width="24" height="18" rx="1"></rect><path d="M4 14h24M12 14v12M20 14v12M4 20h24"></path></svg><div class="reg-name">Core Underwriting</div><div class="reg-count">12</div></div><div class="reg-desc">The analytical nucleus. Income and expense underwriting, rent roll analysis, T-12 trending, and pro forma income construction.</div><div class="reg-skills"><span class="reg-skill">Rent Roll Analysis Engine</span><span class="reg-skill">T-12 Operating Statement</span><span class="reg-skill">Pro Forma Income Builder</span><span class="reg-skill">+9</span></div></div><div class="reg-card" data-mod="2"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><rect x="6" y="4" width="8" height="24" rx="1"></rect><rect x="18" y="12" width="8" height="16" rx="1"></rect><path d="M10 10v12M22 18v4"></path></svg><div class="reg-name">Valuation</div><div class="reg-count">8</div></div><div class="reg-desc">Multi-approach valuation combining income capitalization, sales comparison, and cost approach with reconciliation.</div><div class="reg-skills"><span class="reg-skill">Income Capitalization</span><span class="reg-skill">Sales Comparison Approach</span><span class="reg-skill">Cap Rate Derivation Engine</span><span class="reg-skill">+5</span></div></div><div class="reg-card" data-mod="3"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><path d="M16 4v24M4 16h24"></path><path d="M8 8l16 16M24 8L8 24"></path><circle cx="16" cy="16" r="3"></circle></svg><div class="reg-name">Loan Sizer</div><div class="reg-count">10</div></div><div class="reg-desc">Constraint waterfall engine applying five sizing tests to determine maximum supportable loan proceeds.</div><div class="reg-skills"><span class="reg-skill">Constraint Waterfall Engine</span><span class="reg-skill">LTC Sizing Calculator</span><span class="reg-skill">LTV Sizing (As-Is)</span><span class="reg-skill">+7</span></div></div><div class="reg-card" data-mod="4"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><circle cx="16" cy="10" r="5"></circle><path d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10"></path></svg><div class="reg-name">Sponsor DD</div><div class="reg-count">9</div></div><div class="reg-desc">Automated sponsor research — track record, portfolio analysis, litigation, financial strength, and comprehensive scoring.</div><div class="reg-skills"><span class="reg-skill">Track Record Research</span><span class="reg-skill">Portfolio Analysis</span><span class="reg-skill">Litigation Search</span><span class="reg-skill">+6</span></div></div><div class="reg-card" data-mod="5"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><path d="M20 4H8a2 2 0 00-2 2v20a2 2 0 002 2h16a2 2 0 002-2V10l-6-6z"></path><path d="M20 4v6h6"></path><path d="M12 18h8M12 22h5"></path></svg><div class="reg-name">Document Intake</div><div class="reg-count">8</div></div><div class="reg-desc">Automated document scanning, classification, data extraction, and needs list generation.</div><div class="reg-skills"><span class="reg-skill">Document Classification</span><span class="reg-skill">Data Extraction Engine</span><span class="reg-skill">Parameter Mapping</span><span class="reg-skill">+5</span></div></div><div class="reg-card" data-mod="6"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><path d="M16 4l3 6h7l-5.5 4 2 7L16 17l-6.5 4 2-7L6 10h7z"></path></svg><div class="reg-name">Credit Soul</div><div class="reg-count">4</div></div><div class="reg-desc">Credit philosophy enforcement engine. Bright-line policy rules and credit discipline that cannot be overridden.</div><div class="reg-skills"><span class="reg-skill">Bright Line Enforcement</span><span class="reg-skill">Policy Rule Engine</span><span class="reg-skill">Override Protection</span><span class="reg-skill">+1</span></div></div><div class="reg-card" data-mod="7"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><path d="M16 4l12 20H4z"></path><path d="M16 14v4"></path><circle cx="16" cy="21" r="1"></circle></svg><div class="reg-name">Risk Assessment</div><div class="reg-count">10</div></div><div class="reg-desc">Comprehensive risk analysis — sensitivity testing, scenario modeling, stress testing, and multi-factor risk scoring.</div><div class="reg-skills"><span class="reg-skill">Sensitivity Analysis</span><span class="reg-skill">Scenario Builder</span><span class="reg-skill">Stress Test Engine</span><span class="reg-skill">+7</span></div></div><div class="reg-card" data-mod="8"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><rect x="6" y="4" width="20" height="24" rx="2"></rect><path d="M10 10h12"></path><circle cx="12" cy="16" r="1.5"></circle><circle cx="20" cy="16" r="1.5"></circle><circle cx="12" cy="22" r="1.5"></circle><circle cx="20" cy="22" r="1.5"></circle></svg><div class="reg-name">Calc Engine</div><div class="reg-count">18</div></div><div class="reg-desc">Deterministic calculation engine — 930+ lines of production-grade financial math. No LLM inference for numbers.</div><div class="reg-skills"><span class="reg-skill">DSCR Calculator</span><span class="reg-skill">Debt Yield Calculator</span><span class="reg-skill">LTV Calculator</span><span class="reg-skill">+15</span></div></div><div class="reg-card" data-mod="9"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><rect x="6" y="6" width="20" height="20" rx="1"></rect><path d="M6 14h20M16 6v20"></path></svg><div class="reg-name">Deal Structure</div><div class="reg-count">9</div></div><div class="reg-desc">Loan structuring — term, rate, reserves, covenants, recourse, and capital stack optimization.</div><div class="reg-skills"><span class="reg-skill">Term Structuring</span><span class="reg-skill">Rate Analysis</span><span class="reg-skill">Reserve Sizing</span><span class="reg-skill">+6</span></div></div><div class="reg-card" data-mod="10"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><rect x="4" y="4" width="24" height="24" rx="2"></rect><path d="M10 12h12M10 16h12M10 20h8"></path></svg><div class="reg-name">Document Gen</div><div class="reg-count">8</div></div><div class="reg-desc">Automated document assembly — IC memos, deal books, term sheets, and all supporting schedules.</div><div class="reg-skills"><span class="reg-skill">IC Memo Generator</span><span class="reg-skill">Deal Book Compiler</span><span class="reg-skill">Term Sheet Generator</span><span class="reg-skill">+5</span></div></div><div class="reg-card" data-mod="11"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><rect x="4" y="6" width="24" height="20" rx="2"></rect><path d="M4 6l12 10 12-10"></path></svg><div class="reg-name">CRM &amp; Pipeline</div><div class="reg-count">5</div></div><div class="reg-desc">Deal pipeline management, contact tracking, and activity logging.</div><div class="reg-skills"><span class="reg-skill">Pipeline Dashboard</span><span class="reg-skill">Contact Manager</span><span class="reg-skill">Activity Logger</span><span class="reg-skill">+2</span></div></div><div class="reg-card" data-mod="12"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><path d="M16 4c-4 0-8 2-8 2v12s4 6 8 10c4-4 8-10 8-10V6s-4-2-8-2z"></path></svg><div class="reg-name">Credit Policy</div><div class="reg-count">5</div></div><div class="reg-desc">Configurable credit box parameters, policy rules, and lending standards enforcement.</div><div class="reg-skills"><span class="reg-skill">Credit Box Config</span><span class="reg-skill">Policy Rule Library</span><span class="reg-skill">Override Approval Flow</span><span class="reg-skill">+2</span></div></div><div class="reg-card" data-mod="13"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><path d="M4 6h8v20H4zM12 6h8v20h-8zM20 6h8v20h-8"></path></svg><div class="reg-name">Knowledge Corpus</div><div class="reg-count">5</div></div><div class="reg-desc">5,900+ documents — regulatory guidance, industry standards, and professional methodology references.</div><div class="reg-skills"><span class="reg-skill">Document Retrieval</span><span class="reg-skill">Semantic Search</span><span class="reg-skill">Source Citation</span><span class="reg-skill">+2</span></div></div><div class="reg-card" data-mod="14"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><rect x="6" y="4" width="20" height="24" rx="2"></rect><path d="M6 4h4v24H6"></path><path d="M14 12h8M14 16h6"></path></svg><div class="reg-name">Deal Book</div><div class="reg-count">4</div></div><div class="reg-desc">Compiled deal package — all analysis, schedules, and supporting exhibits in presentation format.</div><div class="reg-skills"><span class="reg-skill">Package Compiler</span><span class="reg-skill">Exhibit Organizer</span><span class="reg-skill">Table of Contents</span><span class="reg-skill">+1</span></div></div><div class="reg-card" data-mod="15"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><path d="M4 8l6-4 6 4 6-4 6 4v16l-6 4-6-4-6 4-6-4z"></path></svg><div class="reg-name">Portfolio Analytics</div><div class="reg-count">5</div></div><div class="reg-desc">Cross-deal analytics, portfolio concentration, and performance benchmarking.</div><div class="reg-skills"><span class="reg-skill">Portfolio Dashboard</span><span class="reg-skill">Concentration Analysis</span><span class="reg-skill">Performance Tracking</span><span class="reg-skill">+2</span></div></div><div class="reg-card" data-mod="16"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><circle cx="16" cy="16" r="10"></circle><path d="M16 6v4M16 22v4M6 16h4M22 16h4"></path></svg><div class="reg-name">Design System</div><div class="reg-count">5</div></div><div class="reg-desc">Presentation-grade formatting standards, templates, and visual consistency across all outputs.</div><div class="reg-skills"><span class="reg-skill">Template Library</span><span class="reg-skill">Style Engine</span><span class="reg-skill">Format Standards</span><span class="reg-skill">+2</span></div></div><div class="reg-card" data-mod="17"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round"><circle cx="16" cy="8" r="3"></circle><circle cx="8" cy="22" r="3"></circle><circle cx="24" cy="22" r="3"></circle><path d="M16 11v4M13 18l-3 2M19 18l3 2"></path></svg><div class="reg-name">Orchestrator</div><div class="reg-count">6</div></div><div class="reg-desc">Workflow execution engine — manages segment sequencing, state management, and context window optimization.</div><div class="reg-skills"><span class="reg-skill">Segment Sequencer</span><span class="reg-skill">State Manager</span><span class="reg-skill">Context Optimizer</span><span class="reg-skill">+3</span></div></div></div></div>
+</section>
+
+<!-- KNOWLEDGE -->
+<section class="section" id="knowledge">
+  <div class="container">
+    <div class="section-eyebrow">What It Knows</div>
+    <div class="section-title">Knowledge Library</div>
+    <div class="section-desc">Valeri's analytical foundation draws on thousands of regulatory guidance documents, industry standards, and professional methodology references — the equivalent of a senior credit officer with multiple professional certifications and decades of accumulated knowledge.</div>
+    <div class="know-grid" id="knowGrid"><div class="know-cell"><div class="know-bar" style="background:#5B9DAF"></div><div class="know-count">1,400+</div><div class="know-label">OCC &amp; HUD</div><div class="know-items">Supervisory guidance, risk management, fair lending, BSA/AML</div></div><div class="know-cell"><div class="know-bar" style="background:#5B9DAF"></div><div class="know-count">900+</div><div class="know-label">Fed &amp; FDIC</div><div class="know-items">Capital requirements, stress testing, CRA, safety &amp; soundness</div></div><div class="know-cell"><div class="know-bar" style="background:#5B9DAF"></div><div class="know-count">800+</div><div class="know-label">Fannie &amp; Freddie</div><div class="know-items">Agency guidelines, DUS standards, multifamily requirements</div></div><div class="know-cell"><div class="know-bar" style="background:#7BAF8B"></div><div class="know-count">1,200+</div><div class="know-label">Trade Associations</div><div class="know-items">CREFC, IVSC, IREM, CCIM, ASA, SIFMA, TMA standards</div></div><div class="know-cell"><div class="know-bar" style="background:#AF9B6B"></div><div class="know-count">500+</div><div class="know-label">Industry Standards</div><div class="know-items">Appraisal methodology, USPAP, certification frameworks</div></div><div class="know-cell"><div class="know-bar" style="background:#6BAF7B"></div><div class="know-count">1,100+</div><div class="know-label">Market Intelligence</div><div class="know-items">Submarket data, rent surveys, economic indicators</div></div></div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" id="roadmap">
+  <div class="container">
+    <div class="section-eyebrow">What's Coming</div>
+    <div class="section-title">Product Roadmap</div>
+    <div class="section-desc">The core underwriting workflow and standalone analysis tools are live today. Here's what we're building next.</div>
+    <div style="margin-top:56px">
+      <div class="rm-item"><div class="rm-phase"><div class="rm-phase-label">Now</div><div class="rm-phase-date">Q1 2026</div></div><div class="rm-dot live"></div><div class="rm-content"><div class="rm-title">Full Underwriting Workflow</div><div class="rm-desc">End-to-end deal analysis — document intake through IC memo generation. Complete analytical package output with Excel sizing model.</div><div class="rm-tags"><span class="rm-tag live">Live</span><span class="rm-tag">8-Step Pipeline</span><span class="rm-tag">5-Constraint Sizer</span></div></div></div>
+      <div class="rm-item"><div class="rm-phase"><div class="rm-phase-label">Now</div><div class="rm-phase-date">Q1 2026</div></div><div class="rm-dot live"></div><div class="rm-content"><div class="rm-title">Standalone Analysis Nodes</div><div class="rm-desc">Individual tools — term sheet comparison, rent roll analysis, sponsor return modeling — available for instant use without running a full deal.</div><div class="rm-tags"><span class="rm-tag live">Live</span><span class="rm-tag">Term Sheet Comp</span><span class="rm-tag">Rent Roll</span><span class="rm-tag">Sponsor Returns</span></div></div></div>
+      <div class="rm-item"><div class="rm-phase"><div class="rm-phase-label">Next</div><div class="rm-phase-date">Q2 2026</div></div><div class="rm-dot"></div><div class="rm-content"><div class="rm-title">SFR Portfolio &amp; Expanded Asset Classes</div><div class="rm-desc">Single-family rental pool and build-to-rent underwriting modules, followed by industrial, office, and retail property type coverage.</div><div class="rm-tags"><span class="rm-tag">SFR / BTR Pools</span><span class="rm-tag">Industrial</span><span class="rm-tag">Office</span><span class="rm-tag">Retail</span></div></div></div>
+      <div class="rm-item"><div class="rm-phase"><div class="rm-phase-label">Next</div><div class="rm-phase-date">Q2 2026</div></div><div class="rm-dot"></div><div class="rm-content"><div class="rm-title">CRM &amp; Pipeline Management</div><div class="rm-desc">Deal tracking, pipeline visualization, automated follow-ups, and portfolio-level analytics across all active and historical deals.</div><div class="rm-tags"><span class="rm-tag">Deal Pipeline</span><span class="rm-tag">Contact Management</span><span class="rm-tag">Activity Tracking</span></div></div></div>
+      <div class="rm-item"><div class="rm-phase"><div class="rm-phase-label">Future</div><div class="rm-phase-date">Q3 2026</div></div><div class="rm-dot"></div><div class="rm-content"><div class="rm-title">Portfolio Analytics &amp; Surveillance</div><div class="rm-desc">Cross-portfolio risk monitoring, covenant compliance tracking, and automated watchlist management for active loan positions.</div><div class="rm-tags"><span class="rm-tag">Risk Dashboard</span><span class="rm-tag">Covenant Tracking</span><span class="rm-tag">Watchlist</span></div></div></div>
+      <div class="rm-item"><div class="rm-phase"><div class="rm-phase-label">Future</div><div class="rm-phase-date">Q4 2026</div></div><div class="rm-dot"></div><div class="rm-content"><div class="rm-title">Knowledge Corpus Expansion</div><div class="rm-desc">Deep integration with trade associations (CREFC, CCIM, IREM), certification-grade methodology libraries, and continuous learning from deal calibration loops.</div><div class="rm-tags"><span class="rm-tag">5,900+ Docs</span><span class="rm-tag">Trade Associations</span><span class="rm-tag">Calibration Loop</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="footer-brand">Valeri</div><div class="footer-sub">Veleta Capital LLC · 2026</div></footer>
+
+<!-- DETAIL PANEL -->
+<div class="overlay" id="overlay"></div>
+<div class="detail-panel" id="detailPanel"><button class="detail-close" id="detailClose">×</button><div id="detailContent"></div></div>
+
+<!-- DEMO OVERLAY -->
+<div class="demo-overlay" id="demoOverlay">
+  <div class="demo-header">
+    <div class="demo-header-left"><div class="demo-brand">Valeri</div><div class="demo-deal">The Piedmont at Buckhead — 312 Units — Atlanta, GA</div></div>
+    <button class="demo-x" id="demoClose">×</button>
+  </div>
+  <div class="demo-body">
+    <div class="demo-pipe" id="demoPipe"></div>
+    <div class="demo-stream" id="demoStream"></div>
+  </div>
+</div>
+
+<script>
+/* ═══ MODULE DATA ═══ */
+const IC = {
+  market:'<path d="M4 24l7-7 5 5 5-9 7 7"/><path d="M24 14h4v4"/>',
+  uw:'<rect x="4" y="8" width="24" height="18" rx="1"/><path d="M4 14h24M12 14v12M20 14v12M4 20h24"/>',
+  val:'<rect x="6" y="4" width="8" height="24" rx="1"/><rect x="18" y="12" width="8" height="16" rx="1"/><path d="M10 10v12M22 18v4"/>',
+  sizer:'<path d="M16 4v24M4 16h24"/><path d="M8 8l16 16M24 8L8 24"/><circle cx="16" cy="16" r="3"/>',
+  sponsor:'<circle cx="16" cy="10" r="5"/><path d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10"/>',
+  intake:'<path d="M20 4H8a2 2 0 00-2 2v20a2 2 0 002 2h16a2 2 0 002-2V10l-6-6z"/><path d="M20 4v6h6"/><path d="M12 18h8M12 22h5"/>',
+  credit:'<path d="M16 4l3 6h7l-5.5 4 2 7L16 17l-6.5 4 2-7L6 10h7z"/>',
+  risk:'<path d="M16 4l12 20H4z"/><path d="M16 14v4"/><circle cx="16" cy="21" r="1"/>',
+  calc:'<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 10h12"/><circle cx="12" cy="16" r="1.5"/><circle cx="20" cy="16" r="1.5"/><circle cx="12" cy="22" r="1.5"/><circle cx="20" cy="22" r="1.5"/>',
+  struct:'<rect x="6" y="6" width="20" height="20" rx="1"/><path d="M6 14h20M16 6v20"/>',
+  docgen:'<rect x="4" y="4" width="24" height="24" rx="2"/><path d="M10 12h12M10 16h12M10 20h8"/>',
+  crm:'<rect x="4" y="6" width="24" height="20" rx="2"/><path d="M4 6l12 10 12-10"/>',
+  policy:'<path d="M16 4c-4 0-8 2-8 2v12s4 6 8 10c4-4 8-10 8-10V6s-4-2-8-2z"/>',
+  knowledge:'<path d="M4 6h8v20H4zM12 6h8v20h-8zM20 6h8v20h-8"/>',
+  dealbook:'<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M6 4h4v24H6"/><path d="M14 12h8M14 16h6"/>',
+  portfolio:'<path d="M4 8l6-4 6 4 6-4 6 4v16l-6 4-6-4-6 4-6-4z"/>',
+  design:'<circle cx="16" cy="16" r="10"/><path d="M16 6v4M16 22v4M6 16h4M22 16h4"/>',
+  orch:'<circle cx="16" cy="8" r="3"/><circle cx="8" cy="22" r="3"/><circle cx="24" cy="22" r="3"/><path d="M16 11v4M13 18l-3 2M19 18l3 2"/>'
+};
+
+const M = [
+  {id:'market',n:'Market Analysis',s:10,p:'Analysis',pc:'#7BAF8B',d:'Comprehensive submarket and MSA-level analysis. Population dynamics, employment, supply pipeline, and rent trend assessment.',sk:[{n:'MSA Economic Analysis',t:'ANALYSIS'},{n:'Submarket Deep Dive',t:'ANALYSIS'},{n:'Supply Pipeline Assessment',t:'ANALYSIS'},{n:'Rent Trend Analysis',t:'CALC'},{n:'Demographic Study',t:'ANALYSIS'},{n:'Employment Analysis',t:'ANALYSIS'},{n:'Absorption Tracking',t:'CALC'},{n:'Market Risk Scoring',t:'CORE'},{n:'Comp Geographic Mapping',t:'UTIL'},{n:'Market Data Aggregation',t:'INFRA'}],pos:{x:52,y:18},ic:'market',cn:['uw','val','sizer']},
+  {id:'uw',n:'Core Underwriting',s:12,p:'Analysis',pc:'#7BAF8B',d:'The analytical nucleus. Income and expense underwriting, rent roll analysis, T-12 trending, and pro forma income construction.',sk:[{n:'Rent Roll Analysis Engine',t:'CORE'},{n:'T-12 Operating Statement',t:'CORE'},{n:'Pro Forma Income Builder',t:'CORE'},{n:'Expense Normalization',t:'CALC'},{n:'Vacancy Analysis',t:'CALC'},{n:'Concession Mapping',t:'ANALYSIS'},{n:'Revenue Projection',t:'CALC'},{n:'Expense Trending',t:'CALC'},{n:'NOI Derivation',t:'CORE'},{n:'Lender Rent Derivation',t:'CORE'},{n:'Income Waterfall',t:'CALC'},{n:'OpEx Benchmarking',t:'ANALYSIS'}],pos:{x:42,y:42},ic:'uw',cn:['market','val','sizer','calc','intake','credit']},
+  {id:'val',n:'Valuation',s:8,p:'Analysis',pc:'#7BAF8B',d:'Multi-approach valuation combining income capitalization, sales comparison, and cost approach with reconciliation.',sk:[{n:'Income Capitalization',t:'CORE'},{n:'Sales Comparison Approach',t:'CORE'},{n:'Cap Rate Derivation Engine',t:'CALC'},{n:'Cost Approach',t:'ANALYSIS'},{n:'Valuation Reconciliation',t:'CORE'},{n:'Cap Rate Trending',t:'CALC'},{n:'Adjustment Grid',t:'CALC'},{n:'Value Conclusion',t:'OUTPUT'}],pos:{x:62,y:35},ic:'val',cn:['uw','market','sizer','calc']},
+  {id:'sizer',n:'Loan Sizer',s:10,p:'Synthesis',pc:'#AF9B6B',d:'Constraint waterfall engine applying five sizing tests to determine maximum supportable loan proceeds.',sk:[{n:'Constraint Waterfall Engine',t:'CORE'},{n:'LTC Sizing Calculator',t:'CALC'},{n:'LTV Sizing (As-Is)',t:'CALC'},{n:'LTV Sizing (Stabilized)',t:'CALC'},{n:'DSCR Floor Test',t:'CALC'},{n:'Debt Yield Floor Test',t:'CALC'},{n:'Binding Constraint ID',t:'CORE'},{n:'Proceeds Table Generator',t:'OUTPUT'},{n:'Term Sheet Builder',t:'OUTPUT'},{n:'Structure Optimizer',t:'ANALYSIS'}],pos:{x:52,y:52},ic:'sizer',cn:['uw','val','risk','struct','calc']},
+  {id:'sponsor',n:'Sponsor DD',s:9,p:'Intake',pc:'#5B9DAF',d:'Automated sponsor research — track record, portfolio analysis, litigation, financial strength, and comprehensive scoring.',sk:[{n:'Track Record Research',t:'ANALYSIS'},{n:'Portfolio Analysis',t:'ANALYSIS'},{n:'Litigation Search',t:'ANALYSIS'},{n:'Financial Strength Assessment',t:'CORE'},{n:'Experience Scoring',t:'CALC'},{n:'Background Check',t:'ANALYSIS'},{n:'Entity Structure Mapping',t:'ANALYSIS'},{n:'Guarantor Analysis',t:'CORE'},{n:'Sponsor Scorecard',t:'OUTPUT'}],pos:{x:35,y:18},ic:'sponsor',cn:['intake','uw','risk','crm']},
+  {id:'intake',n:'Document Intake',s:8,p:'Intake',pc:'#5B9DAF',d:'Automated document scanning, classification, data extraction, and needs list generation.',sk:[{n:'Document Classification',t:'CORE'},{n:'Data Extraction Engine',t:'CORE'},{n:'Parameter Mapping',t:'CALC'},{n:'Needs List Generator',t:'OUTPUT'},{n:'File Scanner',t:'INFRA'},{n:'OCR Processing',t:'INFRA'},{n:'Document Inventory Builder',t:'OUTPUT'},{n:'Quality Validation',t:'QA'}],pos:{x:24,y:30},ic:'intake',cn:['sponsor','uw','crm']},
+  {id:'credit',n:'Credit Soul',s:4,p:'Synthesis',pc:'#AF9B6B',d:'Credit philosophy enforcement engine. Bright-line policy rules and credit discipline that cannot be overridden.',sk:[{n:'Bright Line Enforcement',t:'CORE'},{n:'Policy Rule Engine',t:'CORE'},{n:'Override Protection',t:'INFRA'},{n:'Credit Philosophy Doc',t:'OUTPUT'}],pos:{x:52,y:36},ic:'credit',cn:['uw','sizer','risk']},
+  {id:'risk',n:'Risk Assessment',s:10,p:'Synthesis',pc:'#AF9B6B',d:'Comprehensive risk analysis — sensitivity testing, scenario modeling, stress testing, and multi-factor risk scoring.',sk:[{n:'Sensitivity Analysis',t:'CORE'},{n:'Scenario Builder',t:'CORE'},{n:'Stress Test Engine',t:'CORE'},{n:'Risk Matrix Generator',t:'OUTPUT'},{n:'Rate Shock Analysis',t:'CALC'},{n:'Vacancy Stress Test',t:'CALC'},{n:'Expense Inflation Test',t:'CALC'},{n:'Downside Scenario',t:'ANALYSIS'},{n:'Risk Scoring Model',t:'CORE'},{n:'Watch List Criteria',t:'ANALYSIS'}],pos:{x:72,y:48},ic:'risk',cn:['sizer','credit','docgen']},
+  {id:'calc',n:'Calc Engine',s:18,p:'Infrastructure',pc:'#8B9BAF',d:'Deterministic calculation engine — 930+ lines of production-grade financial math. No LLM inference for numbers.',sk:[{n:'DSCR Calculator',t:'CALC'},{n:'Debt Yield Calculator',t:'CALC'},{n:'LTV Calculator',t:'CALC'},{n:'LTC Calculator',t:'CALC'},{n:'NOI Derivation',t:'CALC'},{n:'Cap Rate Math',t:'CALC'},{n:'Amortization Schedule',t:'CALC'},{n:'IRR Calculator',t:'CALC'},{n:'Equity Multiple',t:'CALC'},{n:'Cash-on-Cash Return',t:'CALC'},{n:'Per Unit Metrics',t:'CALC'},{n:'Per SF Metrics',t:'CALC'},{n:'Rent Growth Projection',t:'CALC'},{n:'Expense Growth Projection',t:'CALC'},{n:'Reversion Value',t:'CALC'},{n:'Prepayment Penalty',t:'CALC'},{n:'Interest Reserve Sizing',t:'CALC'},{n:'Validation Engine',t:'QA'}],pos:{x:80,y:32},ic:'calc',cn:['uw','val','sizer','portfolio']},
+  {id:'struct',n:'Deal Structure',s:9,p:'Synthesis',pc:'#AF9B6B',d:'Loan structuring — term, rate, reserves, covenants, recourse, and capital stack optimization.',sk:[{n:'Term Structuring',t:'CORE'},{n:'Rate Analysis',t:'CALC'},{n:'Reserve Sizing',t:'CALC'},{n:'Covenant Design',t:'CORE'},{n:'Recourse Analysis',t:'ANALYSIS'},{n:'Capital Stack Builder',t:'CORE'},{n:'Fee Calculation',t:'CALC'},{n:'Prepayment Structure',t:'CORE'},{n:'Structure Comparison',t:'ANALYSIS'}],pos:{x:40,y:60},ic:'struct',cn:['sizer','docgen','policy']},
+  {id:'docgen',n:'Document Gen',s:8,p:'Output',pc:'#6BAF7B',d:'Automated document assembly — IC memos, deal books, term sheets, and all supporting schedules.',sk:[{n:'IC Memo Generator',t:'OUTPUT'},{n:'Deal Book Compiler',t:'OUTPUT'},{n:'Term Sheet Generator',t:'OUTPUT'},{n:'Schedule Builder',t:'OUTPUT'},{n:'Template Engine',t:'INFRA'},{n:'Format Validator',t:'QA'},{n:'Exhibit Generator',t:'OUTPUT'},{n:'Summary Builder',t:'OUTPUT'}],pos:{x:58,y:66},ic:'docgen',cn:['risk','struct','dealbook','design']},
+  {id:'crm',n:'CRM & Pipeline',s:5,p:'Infrastructure',pc:'#8B9BAF',d:'Deal pipeline management, contact tracking, and activity logging.',sk:[{n:'Pipeline Dashboard',t:'OUTPUT'},{n:'Contact Manager',t:'CORE'},{n:'Activity Logger',t:'INFRA'},{n:'Deal Status Tracker',t:'CORE'},{n:'Follow-up Automation',t:'UTIL'}],pos:{x:22,y:46},ic:'crm',cn:['intake','sponsor']},
+  {id:'policy',n:'Credit Policy',s:5,p:'Infrastructure',pc:'#8B9BAF',d:'Configurable credit box parameters, policy rules, and lending standards enforcement.',sk:[{n:'Credit Box Config',t:'CORE'},{n:'Policy Rule Library',t:'INFRA'},{n:'Override Approval Flow',t:'CORE'},{n:'Standards Documentation',t:'OUTPUT'},{n:'Compliance Check',t:'QA'}],pos:{x:28,y:56},ic:'policy',cn:['credit','struct']},
+  {id:'corpus',n:'Knowledge Corpus',s:5,p:'Infrastructure',pc:'#8B9BAF',d:'5,900+ documents — regulatory guidance, industry standards, and professional methodology references.',sk:[{n:'Document Retrieval',t:'INFRA'},{n:'Semantic Search',t:'INFRA'},{n:'Source Citation',t:'UTIL'},{n:'Corpus Management',t:'INFRA'},{n:'Update Pipeline',t:'INFRA'}],pos:{x:28,y:70},ic:'knowledge',cn:['uw','market']},
+  {id:'dealbook',n:'Deal Book',s:4,p:'Output',pc:'#6BAF7B',d:'Compiled deal package — all analysis, schedules, and supporting exhibits in presentation format.',sk:[{n:'Package Compiler',t:'OUTPUT'},{n:'Exhibit Organizer',t:'UTIL'},{n:'Table of Contents',t:'OUTPUT'},{n:'Version Control',t:'INFRA'}],pos:{x:46,y:72},ic:'dealbook',cn:['docgen']},
+  {id:'portfolio',n:'Portfolio Analytics',s:5,p:'Analysis',pc:'#7BAF8B',d:'Cross-deal analytics, portfolio concentration, and performance benchmarking.',sk:[{n:'Portfolio Dashboard',t:'OUTPUT'},{n:'Concentration Analysis',t:'ANALYSIS'},{n:'Performance Tracking',t:'CALC'},{n:'Benchmark Comparison',t:'ANALYSIS'},{n:'Exposure Mapping',t:'OUTPUT'}],pos:{x:82,y:18},ic:'portfolio',cn:['calc','market']},
+  {id:'design',n:'Design System',s:5,p:'Infrastructure',pc:'#8B9BAF',d:'Presentation-grade formatting standards, templates, and visual consistency across all outputs.',sk:[{n:'Template Library',t:'INFRA'},{n:'Style Engine',t:'INFRA'},{n:'Format Standards',t:'INFRA'},{n:'Brand Compliance',t:'QA'},{n:'Output Formatting',t:'UTIL'}],pos:{x:72,y:70},ic:'design',cn:['docgen']},
+  {id:'orch',n:'Orchestrator',s:6,p:'Infrastructure',pc:'#8B9BAF',d:'Workflow execution engine — manages segment sequencing, state management, and context window optimization.',sk:[{n:'Segment Sequencer',t:'CORE'},{n:'State Manager',t:'INFRA'},{n:'Context Optimizer',t:'INFRA'},{n:'Error Recovery',t:'INFRA'},{n:'Progress Tracker',t:'UTIL'},{n:'Token Budget Manager',t:'INFRA'}],pos:{x:82,y:55},ic:'orch',cn:['risk','calc']}
+];
+
+const PIP = [
+  {seg:'SEG 1A',t:'Intake & Scan',m:['Document Intake'],c:'#5B9DAF'},
+  {seg:'SEG 1B',t:'Sponsor DD',m:['Sponsor DD','CRM & Pipeline'],c:'#5B9DAF'},
+  {seg:'SEG 1C',t:'Market Analysis',m:['Market Analysis'],c:'#5B9DAF'},
+  {seg:'SEG 2',t:'Core Underwriting',m:['Core Underwriting','Valuation'],c:'#7BAF8B'},
+  {seg:'SEG 2B',t:'Financial Modeling',m:['Calc Engine','Portfolio Analytics'],c:'#7BAF8B'},
+  {seg:'SEG 3',t:'Sizing & Structure',m:['Loan Sizer','Deal Structure','Credit Policy'],c:'#AF9B6B'},
+  {seg:'SEG 3B',t:'Risk & Stress',m:['Risk Assessment'],c:'#AF9B6B'},
+  {seg:'SEG 4',t:'Document Assembly',m:['Document Gen','Deal Book','Design System'],c:'#6BAF7B'}
+];
+
+const KN = [
+  {ct:'1,400+',lb:'OCC & HUD',it:'Supervisory guidance, risk management, fair lending, BSA/AML',cl:'#5B9DAF'},
+  {ct:'900+',lb:'Fed & FDIC',it:'Capital requirements, stress testing, CRA, safety & soundness',cl:'#5B9DAF'},
+  {ct:'800+',lb:'Fannie & Freddie',it:'Agency guidelines, DUS standards, multifamily requirements',cl:'#5B9DAF'},
+  {ct:'1,200+',lb:'Trade Associations',it:'CREFC, IVSC, IREM, CCIM, ASA, SIFMA, TMA standards',cl:'#7BAF8B'},
+  {ct:'500+',lb:'Industry Standards',it:'Appraisal methodology, USPAP, certification frameworks',cl:'#AF9B6B'},
+  {ct:'1,100+',lb:'Market Intelligence',it:'Submarket data, rent surveys, economic indicators',cl:'#6BAF7B'}
+];
+
+/* ═══ RENDER ═══ */
+function renderConst(){
+  const w=document.getElementById('constellation'),svg=document.getElementById('cSvg');
+  let lines='';
+  M.forEach(m=>{if(!m.cn)return;m.cn.forEach(tid=>{const t=M.find(x=>x.id===tid);if(!t)return;lines+=`<line x1="${m.pos.x}%" y1="${m.pos.y}%" x2="${t.pos.x}%" y2="${t.pos.y}%" data-f="${m.id}" data-t="${t.id}"/>`;});});
+  svg.innerHTML=lines;
+  M.forEach(m=>{
+    const nd=document.createElement('div');nd.className='mod-node';nd.style.left=m.pos.x+'%';nd.style.top=m.pos.y+'%';nd.dataset.id=m.id;
+    nd.innerHTML=`<div class="mod-core"><svg viewBox="0 0 32 32">${IC[m.ic]||IC.calc}</svg><div class="mod-badge">${m.s}</div></div><div class="mod-label">${m.n}</div>`;
+    nd.onclick=()=>openDetail(m);
+    nd.onmouseenter=()=>hlConn(m.id,true);nd.onmouseleave=()=>hlConn(m.id,false);
+    w.appendChild(nd);
+  });
+}
+function hlConn(id,on){document.querySelectorAll('.const-svg line').forEach(l=>{if(l.dataset.f===id||l.dataset.t===id)l.classList.toggle('hl',on)})}
+
+function renderPip(){document.getElementById('pipTrack').innerHTML=PIP.map(p=>`<div class="pip-cell"><div class="pip-seg">${p.seg}</div><div class="pip-title">${p.t}</div><div class="pip-mods">${p.m.join('<br>')}</div><div class="pip-bar" style="background:${p.c}"></div></div>`).join('')}
+
+function renderReg(){document.getElementById('regGrid').innerHTML=M.map((m,i)=>`<div class="reg-card" data-mod="${i}"><div class="reg-header"><svg viewBox="0 0 32 32" style="stroke-linecap:round;stroke-linejoin:round">${IC[m.ic]||IC.calc}</svg><div class="reg-name">${m.n}</div><div class="reg-count">${m.s}</div></div><div class="reg-desc">${m.d}</div><div class="reg-skills">${m.sk.slice(0,3).map(s=>`<span class="reg-skill">${s.n}</span>`).join('')}${m.sk.length>3?`<span class="reg-skill">+${m.sk.length-3}</span>`:''}</div></div>`).join('')}
+
+function renderKnow(){document.getElementById('knowGrid').innerHTML=KN.map(k=>`<div class="know-cell"><div class="know-bar" style="background:${k.cl}"></div><div class="know-count">${k.ct}</div><div class="know-label">${k.lb}</div><div class="know-items">${k.it}</div></div>`).join('')}
+
+/* ═══ DETAIL PANEL ═══ */
+function openDetail(m){
+  const p=document.getElementById('detailPanel'),o=document.getElementById('overlay'),c=document.getElementById('detailContent');
+  c.innerHTML=`<div class="detail-title">${m.n}</div><div class="detail-phase" style="color:${m.pc}">${m.p} · ${m.s} Skills</div><div class="detail-desc">${m.d}</div><div class="detail-label">Skill Inventory</div><ul class="detail-list">${m.sk.map(s=>`<li>${s.n}<span class="detail-type">${s.t}</span></li>`).join('')}</ul>${m.cn?`<div class="detail-label">Connected Modules</div><ul class="detail-list">${m.cn.map(cid=>{const c=M.find(x=>x.id===cid);return c?`<li>${c.n}<span class="detail-type">${c.p}</span></li>`:''}).join('')}</ul>`:''}`;
+  p.classList.add('open');o.classList.add('open');
+}
+function closeDetail(){document.getElementById('detailPanel').classList.remove('open');document.getElementById('overlay').classList.remove('open')}
+
+/* ═══ DOC TABS ═══ */
+function showTab(id,btn){document.querySelectorAll('.doc-body').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.doc-tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active')}
+
+/* ═══ DEMO ENGINE ═══ */
+const DS=[
+  {name:'Document Intake',r:[{t:'Scanning uploaded deal folder...',c:'neutral'},{t:'Identified 14 source documents in package',c:'neutral'},{t:'Offering Memorandum — 47 pages — parsed',c:'neutral'},{t:'Rent Roll — 312 units — extracted',c:'positive'},{t:'T-12 Operating Statement — 12 months — normalized',c:'neutral'},{t:'Sponsor Financial Statement — verified',c:'neutral'},{t:'Phase I ESA — clean, no RECs identified',c:'positive'},{t:'Appraisal — $68.5M as-stabilized value',c:'neutral'},{t:'⚠ Missing: Insurance Certificate — added to Needs List',c:'negative'},{t:'⚠ Missing: Property Tax Bill — added to Needs List',c:'negative'},{t:'Document inventory complete — 14 of 16 required items received',c:'neutral'}]},
+  {name:'Sponsor Diligence',r:[{t:'Researching sponsor: Piedmont Residential Partners LLC',c:'neutral'},{t:'Track record: 4,200+ units acquired since 2014',c:'positive'},{t:'Portfolio: 8 active properties across SE United States',c:'positive'},{t:'No litigation found — clean legal history',c:'positive'},{t:'Net worth: $42M — exceeds loan amount requirement',c:'positive'},{t:'Liquidity: $8.2M verified — adequate post-close reserves',c:'positive'},{t:'Sponsor score: 82/100 — Strong',c:'positive'}]},
+  {name:'Market Analysis',r:[{t:'MSA: Atlanta-Sandy Springs-Roswell — Population 6.2M',c:'neutral'},{t:'Employment growth: +3.1% YoY — outpacing national average',c:'positive'},{t:'Submarket: Buckhead — Class A/B corridor',c:'neutral'},{t:'Submarket vacancy: 5.8% — healthy absorption',c:'positive'},{t:'Effective rent growth: +2.4% trailing 12 months',c:'positive'},{t:'⚠ Supply pipeline: 1,840 units under construction within 3-mile radius',c:'negative'},{t:'⚠ Deliveries expected Q3 2026 — Q1 2027 — near-term pressure',c:'negative'},{t:'Rent-to-income ratio: 28.4% — within acceptable range',c:'positive'},{t:'Submarket risk score: Moderate — supply is the watch item',c:'neutral'}]},
+  {name:'Core Underwriting',r:[{t:'Analyzing rent roll — 312 units across 8 floor plans',c:'neutral'},{t:'Current occupancy: 91.3% (285 of 312 units)',c:'positive'},{t:'Average in-place rent: $1,485/unit — $1.62/SF',c:'neutral'},{t:'Market rent estimate: $1,580/unit — 6.4% loss-to-lease',c:'positive'},{t:'Concessions identified: 2 months free on 18 leases (5.8%)',c:'negative'},{t:'⚠ Lease expirations: 34% rolling in next 6 months — elevated',c:'negative'},{t:'T-12 Gross Revenue: $5,428,000',c:'neutral'},{t:'T-12 Operating Expenses: $2,814,000 — $9,019/unit',c:'neutral'},{t:'⚠ Insurance trending +22% YoY — adjusted to market',c:'negative'},{t:'Underwritten NOI (stabilized): $3,180,000',c:'positive'}]},
+  {name:'Financial Modeling',r:[{t:'Building pro forma — 5-year hold period',c:'neutral'},{t:'Year 1 Revenue (UW): $5,912,000 — 93% occupancy',c:'neutral'},{t:'Year 1 Expenses (UW): $2,956,000 — $9,474/unit',c:'neutral'},{t:'Stabilized NOI (Year 3): $3,180,000',c:'positive'},{t:'Income capitalization: $63.6M at 5.00% cap',c:'neutral'},{t:'Sales comparison approach: $66.2M — $212,000/unit',c:'neutral'},{t:'Reconciled value (as-stabilized): $68.5M',c:'positive'}]},
+  {name:'Loan Sizing',r:[{t:'Running 5-constraint waterfall...',c:'neutral'},{t:'LTC @ 80.0% ceiling → $41,600,000 (basis: $52.0M)',c:'neutral',m:1},{t:'LTV As-Is @ 75.0% ceiling → $46,350,000',c:'neutral',m:1},{t:'LTV Stabilized @ 75.0% ceiling → $51,375,000',c:'neutral',m:1},{t:'DSCR @ 1.05x floor → $39,520,000 ← BINDING',c:'negative',m:1},{t:'Debt Yield @ 7.00% floor → $45,428,000',c:'neutral',m:1},{t:'Maximum loan: $39,520,000',c:'positive',m:1},{t:'LTV (as-is): 63.9% — well within ceiling',c:'positive'},{t:'Day 1 debt yield: 7.48%',c:'positive'},{t:'Suggested rate: SOFR + 325 bps',c:'neutral'}]},
+  {name:'Risk Assessment',r:[{t:'Running sensitivity analysis...',c:'neutral'},{t:'+100 bps rate shock: DSCR drops to 0.94x — ⚠ below floor',c:'negative'},{t:'+200 bps rate shock: DSCR drops to 0.84x — stress failure',c:'negative'},{t:'5% vacancy increase: NOI impact -$296K — DSCR 0.98x',c:'negative'},{t:'Downside scenario (combined): loan supportable at $36.2M',c:'neutral'},{t:'Sponsor risk: Low — experienced, well-capitalized',c:'positive'},{t:'Market risk: Low-Moderate — strong fundamentals, near-term supply',c:'neutral'},{t:'Overall risk rating: Acceptable with conditions',c:'positive'}]},
+  {name:'Document Assembly',r:[{t:'Generating Investment Committee Memo...',c:'neutral'},{t:'Compiling Deal Book — 8 exhibits attached',c:'neutral'},{t:'Building Excel sizing model — 5-tab workbook',c:'neutral'},{t:'Generating term sheet...',c:'neutral'},{t:'Assembling risk matrix and sensitivity tables...',c:'neutral'},{t:'All outputs generated — 8 documents ready for download',c:'positive'}]}
+];
+
+let demoOn=false;
+
+function startDemo(){
+  document.getElementById('demoOverlay').classList.add('open');demoOn=true;
+  const pipe=document.getElementById('demoPipe'),stream=document.getElementById('demoStream');
+  pipe.innerHTML='<div class="demo-progress"><div class="demo-progress-label">Workflow Progress</div><div class="demo-progress-bar"><div class="demo-progress-fill" id="dpf" style="width:0"></div></div></div>'+DS.map((s,i)=>`<div class="demo-step" id="ds${i}"><div class="demo-step-icon">${i+1}</div><div class="demo-step-name">${s.name}</div></div>`).join('');
+  stream.innerHTML='<div class="demo-docs"><div class="demo-docs-title">Source Documents Received</div><div class="demo-doc-chips" id="ddc"></div></div>';
+  const docs=['Offering Memo','Rent Roll','T-12 Statement','Sponsor Financials','Phase I ESA','Appraisal','Title Report','Survey','Zoning Letter','Lease Abstracts','CapEx Budget','Insurance Summary','Org Chart','Entity Docs'];
+  const dc=document.getElementById('ddc');let di=0;
+  const dt=setInterval(()=>{if(di>=docs.length||!demoOn){clearInterval(dt);if(demoOn)setTimeout(()=>runStep(0),600);return}const c=document.createElement('span');c.className='demo-doc-chip';c.textContent=docs[di];dc.appendChild(c);di++},120);
+}
+
+function runStep(si){
+  if(si>=DS.length||!demoOn){if(demoOn)showComplete();return}
+  const s=DS[si],el=document.getElementById('ds'+si),stream=document.getElementById('demoStream'),pf=document.getElementById('dpf');
+  if(el){el.classList.add('active');el.scrollIntoView({behavior:'smooth',block:'nearest'})}
+  pf.style.width=((si/DS.length)*100)+'%';
+  const ph=document.createElement('div');ph.innerHTML=`<div class="demo-phase-header">${s.name}</div>`;stream.appendChild(ph);
+  let ri=0;
+  const rt=setInterval(()=>{if(ri>=s.r.length||!demoOn){clearInterval(rt);if(el){el.classList.remove('active');el.classList.add('complete');el.querySelector('.demo-step-icon').textContent='✓'}if(demoOn)setTimeout(()=>runStep(si+1),400);return}
+    const r=s.r[ri],ln=document.createElement('div');ln.className='demo-line '+r.c+(r.m?' metric':'');ln.textContent=r.t;ph.appendChild(ln);stream.scrollTop=stream.scrollHeight;ri++},180+Math.random()*120);
+}
+
+function showComplete(){
+  const s=document.getElementById('demoStream'),pf=document.getElementById('dpf');pf.style.width='100%';
+  const b=document.createElement('div');b.className='demo-complete';
+  b.innerHTML='<div class="demo-complete-title">Analysis Complete</div><div class="demo-complete-sub">8 documents generated — ready for download</div><div class="demo-outputs"><span class="demo-out">IC Memo</span><span class="demo-out">Deal Book</span><span class="demo-out">Excel Model</span><span class="demo-out">Term Sheet</span><span class="demo-out">Sponsor Report</span><span class="demo-out">Market Analysis</span><span class="demo-out">Risk Matrix</span><span class="demo-out">Sensitivity Tables</span></div>';
+  s.appendChild(b);s.scrollTop=s.scrollHeight;
+}
+
+function closeDemo(){demoOn=false;document.getElementById('demoOverlay').classList.remove('open')}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDemo();closeDetail()}});
+
+renderConst();renderPip();renderReg();renderKnow();
+
+/* ═══ EVENT LISTENERS (no inline onclick) ═══ */
+document.getElementById('ctaBox').addEventListener('click',function(){startDemo()});
+document.getElementById('ctaBtn').addEventListener('click',function(e){e.stopPropagation();startDemo()});
+document.getElementById('overlay').addEventListener('click',function(){closeDetail()});
+document.getElementById('detailClose').addEventListener('click',function(){closeDetail()});
+document.getElementById('demoClose').addEventListener('click',function(){closeDemo()});
+
+// Doc tabs
+document.querySelectorAll('.doc-tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    var id=this.getAttribute('data-tab');
+    if(id) showTab(id,this);
+  });
+});
+
+// Registry cards via delegation
+document.getElementById('regGrid').addEventListener('click',function(e){
+  var card=e.target.closest('.reg-card');
+  if(card){
+    var idx=parseInt(card.getAttribute('data-mod'));
+    if(!isNaN(idx) && M[idx]) openDetail(M[idx]);
+  }
+});
+</script>
+
+
+</body></html>
